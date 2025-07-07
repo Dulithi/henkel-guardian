@@ -4,13 +4,14 @@ import { Button } from "@/components/ui/button"
 import { CheckCircle, Sparkles, X } from "lucide-react"
 import { useEffect } from "react"
 import type { Level } from "../types/game"
+import { DelegateInfo } from "@/types/delegate"
 
 interface SuccessModalProps {
   open: boolean
   onOpenChange: (open: boolean) => void
   currentLevelData: Level
   currentLevel: number
-  onNextLevel: () => void
+  onNextLevel: (delegateInfo: DelegateInfo) => Promise<void>
 }
 
 export function SuccessModal({ open, onOpenChange, currentLevelData, currentLevel, onNextLevel }: SuccessModalProps) {
@@ -65,7 +66,15 @@ export function SuccessModal({ open, onOpenChange, currentLevelData, currentLeve
               &quot;{currentLevelData.quote}&quot;
             </blockquote>
             <Button
-              onClick={onNextLevel}
+              onClick={() => {
+                console.log(currentLevelData.delegateInfo)
+                if (currentLevelData.delegateInfo) {
+                  onNextLevel(currentLevelData.delegateInfo)
+                } else {
+                  // Optionally handle the error case here
+                  console.error("DelegateInfo is undefined")
+                }
+              }}
               className="bg-[#FBA700] hover:bg-[#FBA700]/80 text-slate-900 w-full font-medium text-sm sm:text-base"
             >
               {currentLevel < 5 ? "Next Level" : "Complete Game"}

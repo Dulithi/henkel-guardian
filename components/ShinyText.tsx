@@ -11,13 +11,13 @@ const ShinyText: React.FC<ShinyTextProps> = ({ text, disabled = false, speed = 5
     const animationDuration = `${speed}s`;
 
     const shineStyle: React.CSSProperties = {
-        backgroundImage: 'linear-gradient(120deg, rgba(201, 221, 138, 0.7) 0%, rgba(201, 221, 138, 0.7) 40%, rgba(212, 175, 55, 1) 50%, rgba(201, 221, 138, 0.7) 60%, rgba(201, 221, 138, 0.7) 100%)',
-        backgroundSize: '200% 100%',
-        WebkitBackgroundClip: 'text',
-        backgroundClip: 'text',
-        color: 'transparent',
-        animation: disabled ? 'none' : `shine ${animationDuration} linear infinite`,
-    };
+    backgroundImage: 'linear-gradient(120deg, rgba(80, 80, 80, 0.8) 0%, rgba(120, 120, 120, 0.9) 40%, rgba(180, 180, 180, 1) 50%, rgba(120, 120, 120, 0.9) 60%, rgba(80, 80, 80, 0.8) 100%)',
+    backgroundSize: '200% 100%',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+    animation: disabled ? 'none' : `shine ${animationDuration} linear infinite`,
+};
 
     return (
         <>

@@ -8,7 +8,7 @@ interface CharacterIllustrationProps {
 
 export function CharacterIllustration({ currentLevelData }: CharacterIllustrationProps) {
   return (
-    <div className="relative mb-6 sm:mb-8 md:mb-12 px-2 sm:px-4 w-full overflow-hidden">
+    <div className="relative mb-6 sm:mb-8 md:mb-12 px-2 sm:px-4 w-full overflow-hidden bg-gradient-to-r rounded-2xl  from-slate-900 via-gray-900 to-black">
       {/* Main character container with elegant backdrop */}
       <div className="relative flex flex-col items-center text-center px-3 sm:px-6 md:px-10 w-full max-w-md mx-auto">
         
@@ -31,19 +31,19 @@ export function CharacterIllustration({ currentLevelData }: CharacterIllustratio
         </div>
 
         {/* Enhanced info card - mobile optimized */}
-        <div className="relative w-full max-w-xs sm:max-w-sm mx-auto pb-6">
+        <div className="relative w-full max-w-xs sm:max-w-sm mx-auto pb-6 ">
           {/* Card glow effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-amber-400/15 via-purple-500/15 to-blue-500/15 sm:from-amber-400/20 sm:via-purple-500/20 sm:to-blue-500/20 rounded-lg sm:rounded-xl blur-md sm:blur-lg"></div>
           
           {/* Main card */}
-          <div className="relative bg-gradient-to-br from-slate-800/95 to-slate-900/95 backdrop-blur-md rounded-lg sm:rounded-xl p-3 sm:p-5 md:p-6 border border-slate-600/30 shadow-xl sm:shadow-2xl">
+          <div className="relative bg-henkel-red backdrop-blur-md rounded-lg sm:rounded-xl p-3 sm:p-5 md:p-6 border border-slate-600/30 shadow-xl sm:shadow-2xl ">
             {/* Decorative top border */}
-            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
               <div className="w-8 sm:w-12 h-0.5 sm:h-1 bg-gradient-to-r from-amber-400 to-purple-400 rounded-full"></div>
             </div>
             
             <div className="space-y-2 sm:space-y-3">
-              <h3 className="text-white font-bold text-base sm:text-lg md:text-xl bg-gradient-to-r from-amber-200 to-yellow-200 bg-clip-text text-transparent leading-tight">
+              <h3 className="text-white font-bold text-base sm:text-lg md:text-xl bg-gradient-to-r from-amber-200 to-yellow-200 bg-clip-text text-transparent leading-tight ">
                 {currentLevelData.topic}
               </h3>
             </div>

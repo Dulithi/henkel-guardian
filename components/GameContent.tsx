@@ -1,20 +1,21 @@
 "use client"
 
 import { GameState, Level } from "@/types/game"
-
 import { LevelInfo } from "./LevelInfo"
 import { CharacterIllustration } from "./CharacterIllustration"
 import { ChatMessages } from "./ChatMessages"
 import { ChatInput } from "./ChatInput"
 import { Button } from "./ui/button"
+import { DelegateInfo } from "@/types/delegate"
 
 interface GameContentProps {
   gameState: GameState
   currentLevelData: Level
   onInputChange: (value: string) => void
   onSubmit: (e: React.FormEvent, currentLevelData: Level) => void
-  onNextLevel: () => void
+  onNextLevel: () => Promise<void>
   messagesEndRef: React.RefObject<HTMLDivElement | null>
+  delegateInfo: DelegateInfo
 }
 
 export function GameContent({
@@ -23,12 +24,17 @@ export function GameContent({
   onInputChange,
   onSubmit,
   onNextLevel,
-  messagesEndRef,
+  messagesEndRef
 }: GameContentProps) {
 
+  const handleGameSubmit = (e: React.FormEvent, currentLevelData: Level) => {
+    onSubmit(e, currentLevelData)
+  }
+
   return (
-    <div className="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
+    <div className="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 bg-henkel-red">
       <div className="max-w-2xl w-full">
+
         <LevelInfo gameState={gameState} />
 
         <CharacterIllustration currentLevelData={currentLevelData} />
@@ -44,14 +50,17 @@ export function GameContent({
         <ChatInput
           gameState={gameState}
           onInputChange={onInputChange}
-          onSubmit={onSubmit}
+          onSubmit={handleGameSubmit}
           currentLevelData={currentLevelData}
         />
 
         {gameState.completedLevels.includes(gameState.currentLevel) && (
           <div className="mt-6 text-center">
-            <Button onClick={onNextLevel} className="bg-henkel-yellow text-black hover:bg-amber-300 transition">
-              🚀 Next Level
+            <Button 
+              onClick={onNextLevel} 
+              className="bg-henkel-yellow text-black hover:bg-amber-300 transition"
+            >
+              {gameState.currentLevel === 5 ? "🎉 Record Your Achievement" : "🚀 Next Level"}
             </Button>
           </div>
         )}

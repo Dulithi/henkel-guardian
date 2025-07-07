@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react"
 import type { GameState, Level } from "../types/game"
 import { getGeminiResponse } from "@/utils/getGeminiResponse"
+import { DelegateInfo } from "@/types/delegate"
 export function useGame() {
   const [gameState, setGameState] = useState<GameState>({
     currentLevel: 1,
@@ -12,7 +13,7 @@ export function useGame() {
     showSuccess: false,
     gameCompleted: false,
     isLoading: false,
-    completedLevels: [],
+    completedLevels: [],  
   })
 
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -26,8 +27,7 @@ export function useGame() {
       ...prev,
       messages: [],
       usedPrompts: [],
-      userInput: "",
-      sidebarOpen: false,
+      userInput: ""
     }))
   }, [gameState.currentLevel])
 
@@ -93,8 +93,39 @@ export function useGame() {
   }, 1500)
 }
 
+const submitToGoogleSheets = async (delegateInfo: DelegateInfo, level?: number, completionTime?: Date) => {
+  try {
+    const response = await fetch('/api/google-sheets', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        firstName: delegateInfo.firstName,
+        lastName: delegateInfo.lastName,
+        email: delegateInfo.email,
+        country: delegateInfo.country,
+        level,
+        completionTime: completionTime?.toISOString(),
+        action: 'update'
+      }),
+    })
+    
+    if (!response.ok) {
+      throw new Error('Failed to submit to Google Sheets')
+    }
+    
+    console.log('Successfully submitted to Google Sheets')
+  } catch (error) {
+    console.error('Error submitting to Google Sheets:', error)
+  }
+}
 
-  const handleNextLevel = () => {
+  const handleNextLevel = async (delegateInfo: DelegateInfo) => {
+
+    // Record completion time for current level
+    const completionTime = new Date()
+    await submitToGoogleSheets(delegateInfo, gameState.currentLevel, completionTime)
     updateGameState({ showSuccess: false })
     if (gameState.currentLevel < 5) {
       updateGameState({ currentLevel: gameState.currentLevel + 1 })
@@ -123,5 +154,6 @@ export function useGame() {
     handleNextLevel,
     resetGame,
     messagesEndRef,
+    submitToGoogleSheets
   }
 }

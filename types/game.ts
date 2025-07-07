@@ -1,3 +1,5 @@
+import { DelegateInfo } from "./delegate"
+
 export interface Level {
   id: number
   topic: string
@@ -7,6 +9,7 @@ export interface Level {
   detectAnswers: string[]
   icon: React.ReactNode
   description: string
+  delegateInfo?: DelegateInfo
 }
 
 export interface Message {
