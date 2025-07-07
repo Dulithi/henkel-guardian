@@ -67,7 +67,7 @@ export function SuccessModal({ open, onOpenChange, currentLevelData, currentLeve
             </blockquote>
             <Button
               onClick={() => {
-                console.log(currentLevelData.delegateInfo)
+                // console.log(currentLevelData.delegateInfo)
                 if (currentLevelData.delegateInfo) {
                   onNextLevel(currentLevelData.delegateInfo)
                 } else {

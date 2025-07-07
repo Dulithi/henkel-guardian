@@ -32,9 +32,15 @@ export default function Home() {
     if (storedInfo) {
       setDelegateInfo(JSON.parse(storedInfo))
       setShowDelegateForm(false)
-      currentLevelData.delegateInfo = delegateInfo
     }
   }, [])
+
+  useEffect(() => {
+    if (currentLevelData.delegateInfo?.email === "" || !currentLevelData.delegateInfo) {
+      currentLevelData.delegateInfo = delegateInfo
+    }
+    // console.log(currentLevelData)
+  }, [delegateInfo, currentLevelData])
 
   // Track when levels start
   useEffect(() => {
