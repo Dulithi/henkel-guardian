@@ -38,12 +38,20 @@ yarn install
 Create a `.env.local` file in the project root:
 
 ```env
-GEMINI_API_KEY="your Gemini API key"
-NEXT_PUBLIC_GOOGLE_SHEET_ID="your Google Sheet ID"
+# Gemini API Configuration
+GEMINI_API_KEY=your_gemini_api_key_here
+
+# Google Sheets Integration
+GOOGLE_SHEET_ID=your_google_sheet_id_here
+GOOGLE_CLIENT_EMAIL=your_service_account_email@project-name.iam.gserviceaccount.com
+GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYOUR_PRIVATE_KEY_CONTENT_HERE\n-----END PRIVATE KEY-----"
 ```
 
-* `GEMINI_API_KEY`: API key to communicate with Gemini AI
-* `NEXT_PUBLIC_GOOGLE_SHEET_ID`: ID of the Google Sheet; must have columns: `firstname`, `lastname`, `country`, `email`, `created_at`
+
+- `GEMINI_API_KEY`: API key to communicate with Gemini AI
+- `GOOGLE_SHEET_ID`: ID of the Google Sheet; must have columns: `First Name`, `Last Name`, `Email`, `Country`, `Game Started`, `Level 1`, `Level 2`, `Level 3`, `Level 4`, `Level 5`, `Total Duration`
+- `GOOGLE_CLIENT_EMAIL`: Service account email for Google Sheets API access
+- `GOOGLE_PRIVATE_KEY`: Private key for Google Sheets service account authentication
 
 ### 4. Run locally
 
