@@ -70,13 +70,6 @@ Visit [http://localhost:3000](http://localhost:3000) to start the challenge.
 3. Each level is progressively harder and tests creativity and knowledge.
 4. Upon completing Level 5, the user's info is submitted to a Google Sheet.
 
-## ⚙️ Environment Variables
-
-| Variable                      | Description                                   |
-| ----------------------------- | --------------------------------------------- |
-| `GEMINI_API_KEY`              | API key for Gemini AI                         |
-| `NEXT_PUBLIC_GOOGLE_SHEET_ID` | Google Sheet ID used to store completion data |
-
 ## 🚀 Deployment
 
 Deploy to Vercel, Netlify, or any platform supporting Next.js. Ensure environment variables are properly set.
