@@ -14,8 +14,8 @@ export function Header() {
             className="h-8 w-auto"
           />
           <h1 className="font-bold tracking-wide text-lg">
-            <span className="text-[#E1000F]">HENKEL</span>{" "}
-            <span className="text-[#BDCDDA] font-semibold">GUARDIAN</span>
+            <span className="text-henkel-red">HENKEL</span>{" "}
+            <span className="text-black font-semibold">CHALLENGE</span>
           </h1>
         </div>
 

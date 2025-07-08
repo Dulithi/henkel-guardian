@@ -86,7 +86,7 @@ export default function Home() {
               <CardHeader>
                 <CardTitle className="text-2xl text-center text-henkel-red">
                   Welcome to the <span className="text-[#E1000F]">HENKEL</span>{" "}
-                  <span className="text-[#BDCDDA] font-semibold">GUARDIAN</span>
+                  <span className="text-[#BDCDDA] font-semibold">CHALLENGE</span>
                 </CardTitle>
                 <CardDescription className="text-center">
                   Please provide your information to get started

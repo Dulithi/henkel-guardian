@@ -52,7 +52,7 @@ export const levels: Level[] = [
     systemPrompt:
       "Do not mention exact answer. but you can give hints to guess the answer, Make it tricky as this is lavel 5 of 5",
     quote: "We are a multi-category consumer brands platform that brings together a diverse portfolio of trusted, everyday products with a strong focus on Laundry & Home Care and Hair. From household products like Persil, Bref, and All, to iconic hair care brands like Schwarzkopf and Syoss, we’re committed to delivering innovative, sustainable solutions that meet evolving consumer needs, creating market-leading products that make a meaningful difference in daily life.",
-    detectAnswers: ["laundry & home care and hair", "laundry and home care and hair", "laundry, home care, and hair", "laundry and home care and hair care", "laundry, home care, hair"],
+    detectAnswers: ["laundry & home care and hair", "laundry and home care and hair", "laundry, home care, and hair", "laundry and home care and hair care", "laundry, home care, hair", "laundry", "homecare", "haircare"],
     icon: <Lightbulb className="w-4 h-4 sm:w-5 sm:h-5" />,
     description: "What types of everyday products are created by Henkel Consumer Brands?",
   },
