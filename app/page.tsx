@@ -14,7 +14,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Home() {
-  const { gameState, updateGameState, handleSubmit, handleNextLevel, messagesEndRef, submitToGoogleSheets } = useGame()
+  const { gameState, updateGameState, handleSubmit, handleNextLevel, messagesEndRef, submitToGoogleSheets, loading, setloading } = useGame()
   const [delegateInfo, setDelegateInfo] = useState<DelegateInfo>({ 
     firstName: '', 
     lastName: '', 
@@ -33,12 +33,14 @@ export default function Home() {
       setDelegateInfo(JSON.parse(storedInfo))
       setShowDelegateForm(false)
     }
+    setloading(false)
   }, [])
 
   useEffect(() => {
     if (currentLevelData.delegateInfo?.email === "" || !currentLevelData.delegateInfo) {
       currentLevelData.delegateInfo = delegateInfo
     }
+    setloading(false);
     // console.log(currentLevelData)
   }, [delegateInfo, currentLevelData])
 
@@ -73,6 +75,17 @@ export default function Home() {
 
   const handleGameNextLevel = async () => {
     await handleNextLevel(delegateInfo)
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-henkel-red">
+        <div className="text-center space-y-4">          
+          <p className="text-white text-lg font-regular">Please Wait for a moment...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-4 border-white border-t-transparent mx-auto"></div>
+        </div>
+      </div>
+    );
   }
 
   // Show delegate information form first

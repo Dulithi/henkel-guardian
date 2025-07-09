@@ -58,7 +58,7 @@ export function GameContent({
           <div className="mt-6 text-center">
             <Button 
               onClick={onNextLevel} 
-              className="bg-henkel-yellow text-black hover:bg-amber-300 transition"
+              className="bg-henkel-yellow text-black hover:bg-amber-300 transition cursor-pointer"
             >
               {gameState.currentLevel === 5 ? "🎉 Record Your Achievement" : "🚀 Next Level"}
             </Button>

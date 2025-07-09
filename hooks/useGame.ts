@@ -16,6 +16,8 @@ export function useGame() {
     completedLevels: [],  
   })
 
+  const [loading, setloading] = useState<Boolean>(true);
+
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -124,6 +126,7 @@ export function useGame() {
   const handleNextLevel = async (delegateInfo: DelegateInfo) => {
 
     // Record completion time for current level
+    setloading(true)
     const completionTime = new Date()
     await submitToGoogleSheets(delegateInfo, gameState.currentLevel, completionTime)
     updateGameState({ showSuccess: false })
@@ -154,6 +157,8 @@ export function useGame() {
     handleNextLevel,
     resetGame,
     messagesEndRef,
-    submitToGoogleSheets
+    submitToGoogleSheets,
+    loading,
+    setloading
   }
 }

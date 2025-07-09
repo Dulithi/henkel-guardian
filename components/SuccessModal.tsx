@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { CheckCircle, Sparkles, X } from "lucide-react"
+import { X } from "lucide-react"
 import { useEffect } from "react"
 import type { Level } from "../types/game"
 import { DelegateInfo } from "@/types/delegate"
@@ -36,14 +36,10 @@ export function SuccessModal({ open, onOpenChange, currentLevelData, currentLeve
 
       {/* Modal */}
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-        <div className="bg-slate-800 border border-slate-600 text-white max-w-sm sm:max-w-md w-full rounded-lg shadow-xl">
+        <div className="bg-henkel-dark-grey border border-slate-600 text-white max-w-sm sm:max-w-md w-full rounded-lg shadow-xl">
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-slate-600">
-            <div className="flex items-center gap-2 text-[#E1000F] text-lg sm:text-xl font-semibold">
-              <div className="relative">
-                <CheckCircle className="w-6 h-6 sm:w-8 sm:h-8" />
-                <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 absolute -top-1 -right-1 text-[#FBA700] animate-pulse" />
-              </div>
+            <div className="flex justify-center items-center text-green-600 text-lg sm:text-xl font-bold">
               Success!
             </div>
             <Button
@@ -75,9 +71,9 @@ export function SuccessModal({ open, onOpenChange, currentLevelData, currentLeve
                   console.error("DelegateInfo is undefined")
                 }
               }}
-              className="bg-[#FBA700] hover:bg-[#FBA700]/80 text-slate-900 w-full font-medium text-sm sm:text-base"
+              className="bg-henkel-red hover:bg-henkel-red/80 text-white w-1/3 font-medium text-sm sm:text-base rounded-4xl cursor-pointer" 
             >
-              {currentLevel < 5 ? "Next Level" : "Complete Game"}
+              {currentLevel < 5 ? "NEXT LEVEL" : "COMPLETE GAME"}
             </Button>
           </div>
         </div>
