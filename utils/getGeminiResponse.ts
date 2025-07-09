@@ -1,7 +1,6 @@
 "use server";
 
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import { GoogleGenAI } from "@google/genAI"
+import { GoogleGenAI } from "@google/genai"
 import type { Level } from "../types/game";
 
 if (!process.env.GEMINI_API_KEY) {
