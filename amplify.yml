@@ -10,7 +10,7 @@ frontend:
       commands:
         - npm run build
   artifacts:
-    baseDirectory: out  # or "build" or "dist" depending on your framework
+    baseDirectory: .next  # or "build" or "dist" depending on your framework
     files:
       - '**/*'
   cache:
