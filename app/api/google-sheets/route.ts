@@ -26,10 +26,10 @@ function cleanPrivateKey(privateKey: string): string {
 
 export async function POST(request: NextRequest) {
   try {
-    const { firstName, lastName, email, country, level, completionTime } = await request.json()
+    const { teamName, level, completionTime } = await request.json()
 
     // Validate required fields
-    if (!firstName || !lastName || !email || !country) {
+    if (!teamName) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -82,7 +82,7 @@ export async function POST(request: NextRequest) {
     if (!sheet) {
       sheet = await doc.addSheet({
         title: 'Game Progress',
-        headerValues: ['First Name', 'Last Name', 'Email', 'Country', 'Game Started', 'Level 1', 'Level 2', 'Level 3', 'Level 4', 'Level 5', 'Total Duration']
+        headerValues: ['Team Name', 'Game Started', 'Level 1', 'Level 2', 'Level 3', 'Level 4', 'Level 5', 'Total Duration']
       })
     }
 
@@ -90,15 +90,12 @@ export async function POST(request: NextRequest) {
     const rows = await sheet.getRows()
     
     // Find existing row for this delegate (using email as unique identifier)
-    let delegateRow = rows.find(row => row.get('Email') === email)
+    let delegateRow = rows.find(row => row.get('Team Name') === teamName)
     
     if (!delegateRow) {
       // Create new row for this delegate
       delegateRow = await sheet.addRow({
-        'First Name': firstName,
-        'Last Name': lastName,
-        Email: email,
-        Country: country,
+        'Team Name': teamName,
         'Game Started': new Date().toLocaleString(),
         'Level 1': '',
         'Level 2': '',

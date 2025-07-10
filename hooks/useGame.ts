@@ -103,10 +103,7 @@ export function useGame() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          firstName: delegateInfo.firstName,
-          lastName: delegateInfo.lastName,
-          email: delegateInfo.email,
-          country: delegateInfo.country,
+          teamName: delegateInfo.teamName,
           level,
           completionTime: completionTime?.toISOString(),
           action: 'update'

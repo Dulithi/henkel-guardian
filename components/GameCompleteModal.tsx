@@ -1,7 +1,6 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Trophy, X } from "lucide-react"
 import { useEffect } from "react"
 
 interface GameCompletedModalProps {
@@ -37,7 +36,7 @@ export function GameCompletedModal({ open, onOpenChange}: GameCompletedModalProp
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
         <div className="bg-slate-800 border border-slate-600 text-white max-w-sm sm:max-w-md w-full rounded-lg shadow-xl max-h-[90vh] overflow-y-auto">
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-slate-600">
+          {/* <div className="flex items-center justify-between p-4 border-b border-slate-600">
             <div className="flex items-center gap-2 text-[#E1000F] text-lg sm:text-xl font-semibold">
               <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-[#FBA700]" />
               Vault Unlocked! Achievement Unlocked!
@@ -50,24 +49,18 @@ export function GameCompletedModal({ open, onOpenChange}: GameCompletedModalProp
             >
               <X className="w-4 h-4" />
             </Button>
-          </div>
+          </div> */}
 
           {/* Content */}
           <div className="py-6 px-4">
             <div className="text-center">
-              <div className="text-4xl sm:text-6xl mb-4">🏆</div>
-              <p className="text-slate-200 mb-4 font-medium text-sm sm:text-base">
-                Congratulations! You&#39;ve mastered all 5 levels!
-              </p>
-              <div className="bg-gradient-to-r from-[#E1000F] to-[#FBA700] text-white p-3 sm:p-4 rounded-lg mb-6">
-                <p className="font-bold text-sm sm:text-base">Master Prompt Engineer</p>
-                <p className="text-xs sm:text-sm opacity-90">
-                  You&#39;ve proven your skills in extracting guarded information!
+              {/* <div className="flex flex-col items-center justify-center min-h-screen"> */}
+                <h1 className="text-4xl font-extrabold text-henkel-white">Congratulations!</h1>
+                <p className="text-m text-henkel-white text-center mb-2">
+                  You have finished the game.<br />
+                  Please wait for results.
                 </p>
-              </div>
-              <p className="text-slate-300 text-sm mb-6">
-                You&#39;ve successfully completed the challenge and demonstrated exceptional prompt engineering abilities. Well done!
-              </p>
+              {/* </div> */}
               
               <Button
                 onClick={handleClose}

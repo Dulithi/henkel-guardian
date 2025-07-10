@@ -16,10 +16,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 export default function Home() {
   const { gameState, updateGameState, handleSubmit, handleNextLevel, messagesEndRef, submitToGoogleSheets, loading, setloading } = useGame()
   const [delegateInfo, setDelegateInfo] = useState<DelegateInfo>({ 
-    firstName: '', 
-    lastName: '', 
-    email: '', 
-    country: '' 
+    teamName: ''
   })
   const [showDelegateForm, setShowDelegateForm] = useState(true)
   const [levelStartTimes, setLevelStartTimes] = useState<Record<number, Date>>({})
@@ -37,12 +34,12 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    if (currentLevelData.delegateInfo?.email === "" || !currentLevelData.delegateInfo) {
+    if (currentLevelData.delegateInfo?.teamName === "" || !currentLevelData.delegateInfo) {
       currentLevelData.delegateInfo = delegateInfo
     }
     setloading(false);
     // console.log(currentLevelData)
-  }, [delegateInfo, currentLevelData])
+  }, [delegateInfo, currentLevelData, gameState.gameCompleted])
 
   // Track when levels start
   useEffect(() => {
@@ -56,7 +53,7 @@ export default function Home() {
 
   const handleDelegateSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (delegateInfo.firstName && delegateInfo.lastName && delegateInfo.email && delegateInfo.country) {
+    if (delegateInfo.teamName) {
       currentLevelData.delegateInfo = delegateInfo
       localStorage.setItem('delegateInfo', JSON.stringify(delegateInfo))
       
@@ -108,57 +105,15 @@ export default function Home() {
               <CardContent>
                 <form onSubmit={handleDelegateSubmit} className="space-y-4">
                   <div>
-                    <Label htmlFor="firstName" className="text-sm font-medium">
-                      First Name
+                    <Label htmlFor="teamName" className="text-sm font-medium">
+                      Team Name
                     </Label>
                     <Input
-                      id="firstName"
+                      id="teamName"
                       type="text"
-                      value={delegateInfo.firstName}
-                      onChange={(e) => setDelegateInfo(prev => ({ ...prev, firstName: e.target.value }))}
-                      placeholder="Enter your first name"
-                      required
-                      className="mt-1"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="lastName" className="text-sm font-medium">
-                      Last Name
-                    </Label>
-                    <Input
-                      id="lastName"
-                      type="text"
-                      value={delegateInfo.lastName}
-                      onChange={(e) => setDelegateInfo(prev => ({ ...prev, lastName: e.target.value }))}
-                      placeholder="Enter your last name"
-                      required
-                      className="mt-1"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="email" className="text-sm font-medium">
-                      Email
-                    </Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={delegateInfo.email}
-                      onChange={(e) => setDelegateInfo(prev => ({ ...prev, email: e.target.value }))}
-                      placeholder="Enter your email address"
-                      required
-                      className="mt-1"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="country" className="text-sm font-medium">
-                      Country
-                    </Label>
-                    <Input
-                      id="country"
-                      type="text"
-                      value={delegateInfo.country}
-                      onChange={(e) => setDelegateInfo(prev => ({ ...prev, country: e.target.value }))}
-                      placeholder="Enter your country"
+                      value={delegateInfo.teamName}
+                      onChange={(e) => setDelegateInfo(prev => ({ ...prev, teamName: e.target.value }))}
+                      placeholder="Enter your team name"
                       required
                       className="mt-1"
                     />
@@ -166,7 +121,7 @@ export default function Home() {
                   <Button 
                     type="submit" 
                     className="w-full bg-henkel-yellow text-black hover:bg-amber-300 transition"
-                    disabled={!delegateInfo.firstName || !delegateInfo.lastName || !delegateInfo.email || !delegateInfo.country}
+                    disabled={!delegateInfo.teamName}
                   >
                     Start Game
                   </Button>
@@ -178,6 +133,17 @@ export default function Home() {
       </div>
     )
   }
+
+  // if (gameState.gameCompleted) {
+    // <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    //   <h1 className="text-6xl font-extrabold text-green-600 mb-4">Congratulations!</h1>
+    //   <p className="text-lg text-gray-700 text-center">
+    //     You have finished the game.<br />
+    //     Please wait for results.
+    //   </p>
+    // </div>
+
+  // }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-black">
